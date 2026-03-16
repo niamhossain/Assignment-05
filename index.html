@@ -59,10 +59,11 @@
             <div class="flex-1">
                 <a class="btn btn-ghost text-xl"><img class="w-9" src="./assets/github-logo.png" alt=""> GitHub Issues Tracker</a>
             </div>
-            <div class="flex gap-4">
-                <input type="text" placeholder="  Search  issues..." class="input input-bordered border border-gray-300 w-24 md:w-auto" />
+            <div class="flex gap-4 relative">
+                <span><i class="fa-solid fa-magnifying-glass absolute top-3 left-7 z-50 text-gray-400"></i></span>
+                <input type="text" placeholder="       Search  issues..." class="input input-bordered border border-gray-300 w-24 md:w-auto" />
                 <div>
-                <button class="btn btn-primary">New Issues</button>
+                <button class="btn btn-primary">+ New Issues</button>
                 </div>
             </div>
             </div>
@@ -70,8 +71,29 @@
             <hr class="border-t-[1px] border-gray-200">
          </section>
          <!-- All Section -->
-          <section>
-            
+          <section class="w-9/12 mx-auto">
+                <!-- three buttons -->
+                <div class="bg-base-100 shadow-sm flex gap-4 mt-14 p-6">
+                    <button class="btn btn-primary w-28">All</button>
+                    <button class="btn w-28">Open</button>
+                    <button class="btn w-28">Closed</button>
+                </div>
+                <!--Live Issues tracking -->
+                <div class="bg-base-100 shadow-sm mt-4 p-6 flex justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="rounded-full bg-[#ECE4FF] p-2">
+                            <img src="./assets/Aperture.png" alt="">
+                        </div>
+                        <div>
+                            <h1 class="font-semibold text-xl">50 issues</h1>
+                            <p class="text-gray-500">Track and manage your project issues</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6 items-center">
+                        <p><i class="fa-solid fa-circle" style="color: rgb(99, 230, 190);"></i>  open</p>
+                        <p><i class="fa-solid fa-circle" style="color: rgb(177, 151, 252);"></i>  closed</p>
+                    </div>    
+                </div>
           </section>
     </main>
 </body>
