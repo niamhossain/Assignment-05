@@ -11,9 +11,9 @@
     <!-- font Awesome -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- tailwind -->
-        <script src="https://cdn.tailwindcss.com"></script>
-    <!-- daisy ui -->
-        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- daisy ui -->     
+        <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" />
 
         <style>
             *{
@@ -21,10 +21,10 @@
             }
         </style>
 </head>
-<body class="bg-[#F8FAFC]">
+<body>
     <main>
         <!-- login section -->
-        <section class="h-screen flex justify-center items-center">
+        <section class="h-screen flex justify-center items-center bg-base-200 hidden">
                     <fieldset class="fieldset rounded-box p-4 bg-white shadow-lg w-[520px] rounded-lg">
                         <div class="mx-auto text-center pb-6">
                             <img class="mx-auto pt-8" src="./assets/github-logo.png" alt="">
@@ -32,14 +32,14 @@
                             <p class="text-gray-500">Sign in to manage your issues</p>
                         </div>
                         <label class="label font-medium text-[#1F2937] ml-6">Username</label>
-                        <input type="text" class="input mx-auto border border-gray-300 rounded-lg w-11/12" placeholder="    Enter Username" />
+                        <input type="text" class="input mx-auto border border-gray-300 rounded-lg w-11/12" placeholder="Enter Username" />
                         <p class="text-primary ml-6">Default: admin</p>
         
                         <label class="label font-medium text-[#1F2937] ml-6">Password</label>
-                        <input type="password" class="input mx-auto border border-gray-300 rounded-lg w-11/12" placeholder="    Enter Password" />
+                        <input type="password" class="input mx-auto border border-gray-300 rounded-lg w-11/12" placeholder="Enter Password" />
                         <p class="text-primary pb-6 ml-6">Default: admin123</p>
         
-                        <button class="btn btn-primary bg-[#4A00FF] text-white mx-auto border border-gray-300 rounded-lg w-11/12">Sign in</button>
+                        <button class="btn btn-primary text-white mx-auto border border-gray-300 rounded-lg w-11/12">Sign in</button>
                         <div class="flex items-center py-6">
                             <hr class="w-1/2 mx-4">
                             <p>OR</p>
@@ -52,6 +52,27 @@
                         </div>
                     </fieldset>
         </section>
+        <!-- Navbar -->
+         <section>
+            <header class="w-11/12 mx-auto">
+                <div class="navbar">
+            <div class="flex-1">
+                <a class="btn btn-ghost text-xl"><img class="w-9" src="./assets/github-logo.png" alt=""> GitHub Issues Tracker</a>
+            </div>
+            <div class="flex gap-4">
+                <input type="text" placeholder="  Search  issues..." class="input input-bordered border border-gray-300 w-24 md:w-auto" />
+                <div>
+                <button class="btn btn-primary">New Issues</button>
+                </div>
+            </div>
+            </div>
+            </header>
+            <hr class="border-t-[1px] border-gray-200">
+         </section>
+         <!-- All Section -->
+          <section>
+            
+          </section>
     </main>
 </body>
 </html>
