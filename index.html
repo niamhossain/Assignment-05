@@ -22,7 +22,7 @@
         </style>
 </head>
 <body>
-    <main>
+    <main class="pb-6">
         <!-- login section -->
         <section id="loginSect" class="h-screen flex justify-center items-center bg-base-200 hidden">
                     <fieldset class="fieldset rounded-box p-4 bg-white shadow-lg w-[520px] rounded-lg">
@@ -79,9 +79,9 @@
           <section class="w-9/12 mx-auto primarySects">
                 <!-- three buttons -->
                 <div class="bg-base-100 shadow-sm flex gap-4 mt-14 p-6 flex-col sm:flex-row items-center">
-                    <button class="btn btn-primary w-28">All</button>
-                    <button class="btn w-28">Open</button>
-                    <button class="btn w-28">Closed</button>
+                    <button id="allBtn" class="btn btn-primary w-28">All</button>
+                    <button id="openBtn" class="btn w-28">Open</button>
+                    <button id="closedBtn" class="btn w-28">Closed</button>
                 </div>
                 <!--Live Issues tracking -->
                 <div class="bg-base-100 shadow-sm mt-4 p-6 flex justify-between flex-col sm:flex-row items-center">
@@ -101,13 +101,13 @@
                 </div>
           </section>
           <!-- All Cards Section -->
-          <section id="allSect" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 w-9/12 mx-auto pt-6 bg-base-200 shadow-md primarySects">
+          <section id="allSect" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 w-9/12 mx-auto pt-6 bg-base-200 shadow-md primarySects pb-4">
           </section>
           <!-- Open Section -->
-          <section id="openSect" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 w-9/12 mx-auto pt-6 bg-base-200 shadow-md hidden">
+          <section id="openSect" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 w-9/12 mx-auto pt-6 bg-base-200 shadow-md pb-4 hidden">
           </section>
           <!-- Closed Sect -->
-          <section id="closedSect" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 w-9/12 mx-auto pt-6 bg-base-200 shadow-md hidden">
+          <section id="closedSect" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 w-9/12 mx-auto pt-6 bg-base-200 shadow-md pb-4 hidden">
           </section>
     </main>
     <script src="./function.js"></script>

@@ -105,3 +105,19 @@ dateConversion = (dateInfo) =>{
     return `${day}/${month}/${year}`;
 }
 
+document.getElementById("openBtn").addEventListener("click", function(){
+    openSect.classList.remove("hidden");
+    allSect.classList.add("hidden");
+    closedSect.classList.add("hidden");
+    
+})
+document.getElementById("closedBtn").addEventListener("click", function(){
+    closedSect.classList.remove("hidden");
+    allSect.classList.add("hidden");
+    openSect.classList.add("hidden");
+})
+document.getElementById("allBtn").addEventListener("click", function(){
+    allSect.classList.remove("hidden")
+    openSect.classList.add("hidden")
+    closedSect.classList.add("hidden")
+})
