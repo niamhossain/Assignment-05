@@ -1,17 +1,32 @@
 //Fetching Data
-    loadData=()=>{
-        fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+
+    let allData;
+    let openData;
+    let closedData;
+
+    let url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";    
+    loadData=(option)=>{
+        fetch(url)
             .then(res=>res.json())
             .then(data=> {
-                displayData(data.data);
-                displayOpenData(data.data);
-                displayClosedData(data.data);
+                allData = data.data;
+                openData = allData.filter(issue => issue.status==="open")
+                closedData = allData.filter(issue => issue.status==="closed")
+                if(option==="all"){
+                    displayData(allData);
+                }
+                else if(option==="open"){
+                    displayData(openData);
+                }
+                else{
+                    displayData(closedData);
+                }
             })
     }
 
-
-    // Dispaying data
+    // Dispaying All data
     displayData=(data)=>{
+        allSect.innerHTML = "";
         for(let issue of data){
             const infoDiv = document.createElement("div");
             let priorityColor;
@@ -61,18 +76,10 @@
             `;
             const allSect = document.getElementById("allSect");
             allSect.append(infoDiv);
-            const openSect = document.getElementById("openSect");
-            const closedSect = document.getElementById("closedSect");
-            if(issue.status==="open"){
-                openSect.append(infoDiv.cloneNode(true));
-            }
-            else{
-                closedSect.append(infoDiv.cloneNode(true));
-            }
         }
     }
 
-loadData();
+loadData("all");
 
 
 
@@ -105,19 +112,23 @@ dateConversion = (dateInfo) =>{
     return `${day}/${month}/${year}`;
 }
 
-document.getElementById("openBtn").addEventListener("click", function(){
-    openSect.classList.remove("hidden");
-    allSect.classList.add("hidden");
-    closedSect.classList.add("hidden");
-    
+
+document.getElementById("allBtn").addEventListener("click", () =>{
+    loadData("all");
+    removeBtnPrimary();
+    document.getElementById("allBtn").classList.add("btn-primary");
 })
-document.getElementById("closedBtn").addEventListener("click", function(){
-    closedSect.classList.remove("hidden");
-    allSect.classList.add("hidden");
-    openSect.classList.add("hidden");
+document.getElementById("openBtn").addEventListener("click", () =>{
+    loadData("open");
+    removeBtnPrimary();
+    document.getElementById("openBtn").classList.add("btn-primary");
 })
-document.getElementById("allBtn").addEventListener("click", function(){
-    allSect.classList.remove("hidden")
-    openSect.classList.add("hidden")
-    closedSect.classList.add("hidden")
+document.getElementById("closedBtn").addEventListener("click", () =>{
+    loadData("closed");
+    removeBtnPrimary();
+    document.getElementById("closedBtn").classList.add("btn-primary");
 })
+
+removeBtnPrimary=()=>{
+    document.querySelectorAll(".btnSect").forEach(btn => btn.classList.remove("btn-primary"))
+}
