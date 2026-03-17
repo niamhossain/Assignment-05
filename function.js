@@ -132,3 +132,18 @@ document.getElementById("closedBtn").addEventListener("click", () =>{
 removeBtnPrimary=()=>{
     document.querySelectorAll(".btnSect").forEach(btn => btn.classList.remove("btn-primary"))
 }
+
+
+//Search
+
+document.getElementById("searchBtn").addEventListener("click", ()=>{
+    const search = document.getElementById("searchData");
+    const searchValue = search.value.trim().toLowerCase();
+    if(searchValue!=""){
+        url = `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`
+    }
+    else{
+        url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";
+    }
+    loadData("all");
+})
