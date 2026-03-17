@@ -1,45 +1,84 @@
+//Fetching Data
     loadData=()=>{
         fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
             .then(res=>res.json())
             .then(data=> {
-                displayData(data.data)
+                displayData(data.data);
+                displayOpenData(data.data);
+                displayClosedData(data.data);
             })
     }
 
+
+    // Dispaying data
     displayData=(data)=>{
         for(let issue of data){
             const infoDiv = document.createElement("div");
+            let priorityColor;
+            let borderColor;
+            let img;
+            if(issue.priority==="high"){
+                priorityColor = `bg-[#FEECEC] text-error`;
+            }
+            else if(issue.priority==="medium"){
+                priorityColor = `bg-[#FFF6D1] text-warning`;
+            }
+            else{
+                priorityColor = `bg-[#EEEFF2] text-[#9CA3AF]`;
+            }
+            if(issue.status=="open"){
+            borderColor = `border-success open`;
+            img = `<img src="./assets/Open-Status.png" alt="">`
+            }
+            else{
+                borderColor = `border-[#A855F7] closed`
+                img = `<img src="./assets/Closed- Status .png" alt="">`
+                }
             infoDiv.innerHTML = `
-            <div class="card w-5/6 sm:w-64 shadow-lg bg-white border-t-4 border-success mx-auto justify-evenly">
+            <div class="card w-5/6 sm:w-64 shadow-lg bg-white border-t-4 ${borderColor} mx-auto justify-evenly">
                         <div class="w-5/6 mx-auto pt-4">
                             <div class="flex justify-between pb-4 items-center">
                                 <div>
-                                    <img src="./assets/Open-Status.png" alt="">
+                                    ${img}
                                 </div>
-                                <p class="text-error bg-[#FEECEC] rounded-full w-20 text-center text-xs py-1">HIGH</p>
+                                <p class="rounded-full w-20 text-center text-xs py-1 ${priorityColor}">${issue.priority.toUpperCase()}</p>
                             </div>
-                            <h2 class="pb-2 text-sm font-semibold">Fix navigation menu on mobile devices</h2>
-                            <p class="text-[#64748B] text-xs">The navigation menu doesn't collapse properly on mobile devices...</p>
+                            <h2 class="pb-2 text-sm font-semibold">${issue.title}</h2>
+                            <p class="text-[#64748B] text-xs">${issue.description}</p>
                             <div class="flex text-xs gap-1 py-3 pb-4">
-                                <p class="text-error bg-[#FEECEC] rounded-full text-center p-1">BB Bug</p>
-                                <p class="text-[#D97706] bg-[#FDE68A] rounded-full text-center p-1">Help wanted</p>
+                                <p class="text-error bg-[#FEECEC] rounded-full text-center py-1 border px-2">${issue.labels[0]}</p>
+                                ${issue.labels[1]? `<p class="text-[#D97706] bg-[#FFF8DB] rounded-full text-center py-1 border px-2">${issue.labels[1]}</p>` : ""}
+                                
                             </div>
                             <hr class="border-t border-gray-300">
-                            <p class="text-[#64748B] text-xs pt-4 pb-2">#1
-                                    by john_doe</p>
+                            <p class="text-[#64748B] text-xs pt-4 pb-2">#${issue.id}
+                                    by ${issue.author}</p>
                                 <p class="text-[#64748B] text-xs pb-4">
-                                    1/15/2024
+                                    ${dateConversion(issue.createdAt)}
                                 </p>
                         </div>
                     </div>
             `;
             const allSect = document.getElementById("allSect");
             allSect.append(infoDiv);
+            const openSect = document.getElementById("openSect");
+            const closedSect = document.getElementById("closedSect");
+            if(issue.status==="open"){
+                openSect.append(infoDiv.cloneNode(true));
+            }
+            else{
+                closedSect.append(infoDiv.cloneNode(true));
+            }
         }
     }
 
 loadData();
 
+
+
+
+
+//login part
 const signIn = document.getElementById("btnLogin");
 signIn.addEventListener("click", function(){
     const user = document.getElementById("userName");
@@ -55,3 +94,14 @@ signIn.addEventListener("click", function(){
         allSection.forEach(sect => sect.classList.remove("hidden"))
     }
 })
+
+
+// Date Conversion
+dateConversion = (dateInfo) =>{
+    const date = new Date(dateInfo);
+    const day = date.getUTCDate();
+    const month = date.getUTCMonth()+1;
+    const year = date.getUTCFullYear();
+    return `${day}/${month}/${year}`;
+}
+
