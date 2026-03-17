@@ -10,7 +10,7 @@ displayData=(data)=>{
     for(let issue of data){
         const infoDiv = document.createElement("div");
         infoDiv.innerHTML = `
-        <div class="card w-80 shadow-lg bg-white border-t-4 border-success mx-auto justify-evenly">
+        <div class="card w-64 shadow-lg bg-white border-t-4 border-success mx-auto justify-evenly">
                     <div class="w-5/6 mx-auto pt-4">
                         <div class="flex justify-between pb-4 items-center">
                             <div>
