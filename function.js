@@ -1,3 +1,16 @@
+//Spinner
+
+ CallSpinner=(stat)=>{
+    if(stat==true){
+        document.getElementById("spinner").classList.remove("hidden");
+        document.querySelectorAll(".primarySects").forEach(el => el.classList.add("hidden"))
+    }
+    else{
+        document.getElementById("spinner").classList.add("hidden");
+        document.querySelectorAll(".primarySects").forEach(el => el.classList.remove("hidden"))
+    }
+ }
+
 //Fetching Data
 
     let allData;
@@ -6,6 +19,7 @@
 
     let url = "https://phi-lab-server.vercel.app/api/v1/lab/issues";    
     loadData=(option)=>{
+        CallSpinner(true);
         fetch(url)
             .then(res=>res.json())
             .then(data=> {
@@ -26,6 +40,7 @@
 
     // Dispaying All data
     displayData=(data)=>{
+        const allSect = document.getElementById("allSect")
         allSect.innerHTML = "";
         for(let issue of data){
             const infoDiv = document.createElement("div");
@@ -79,6 +94,7 @@
            
             
         }
+        CallSpinner(false);
     }
 
 loadData("all");
