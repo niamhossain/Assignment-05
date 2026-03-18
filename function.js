@@ -92,8 +92,8 @@ loadData("all");
                         modal.innerHTML = `
                         <h1 class="text-2xl font-bold pb-2">${modalInfo.data.title}</h1>
                         <ul class="flex gap-5 text-xs items-center">
-                        <li class="bg-success rounded-full py-1 px-2 text-white">Opened</li>
-                        <li class="text-[#64748B]" type="disc" >Opened by ${modalInfo.data.assignee}</li>
+                        <li class="bg-success rounded-full py-1 px-2 text-white">${modalInfo.data.status.toUpperCase()}</li>
+                        <li class="text-[#64748B]" type="disc" >Opened by ${modalInfo.data.assignee ? modalInfo.data.assignee : "none"}</li>
                         <li class="text-[#64748B]" type="disc">${dateConversion(modalInfo.data.createdAt)}</li>
                         </ul>
                         <div class="flex text-xs gap-1 py-3 pb-4">
