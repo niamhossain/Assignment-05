@@ -97,8 +97,6 @@
         CallSpinner(false);
     }
 
-loadData("all");
-
         //Displaying the modal
             displayModal=(id)=>{
                 fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
@@ -165,6 +163,7 @@ signIn.addEventListener("click", function(){
         document.getElementById("loginSect").classList.add("hidden");
         const allSection = document.querySelectorAll(".primarySects");
         allSection.forEach(sect => sect.classList.remove("hidden"))
+        loadData("all");
     }
 })
 

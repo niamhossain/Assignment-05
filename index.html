@@ -24,7 +24,7 @@
 <body>
     <main class="pb-6">
         <!-- login section -->
-        <section id="loginSect" class="h-screen flex justify-center items-center bg-base-200 hidden">
+        <section id="loginSect" class="h-screen flex justify-center items-center bg-base-200">
                     <fieldset class="fieldset rounded-box p-4 bg-white shadow-lg w-[520px] rounded-lg">
                         <div class="mx-auto text-center pb-6">
                             <img class="mx-auto pt-8" src="./assets/github-logo.png" alt="">
@@ -53,7 +53,7 @@
                     </fieldset>
         </section>
         <!-- Navbar -->
-         <section class="primarySects">
+         <section class="primarySects hidden">
             <header class="w-11/12 mx-auto">
                 <div class="navbar">
             <div class="flex-1 flex flex-col sm:flex-row items-center gap-2">
@@ -76,7 +76,7 @@
             <hr class="border-t-[1px] border-gray-200">
          </section>
          <!-- main body Section -->
-          <section class="w-9/12 mx-auto primarySects">
+          <section class="w-9/12 mx-auto primarySects hidden">
                 <!-- three buttons -->
                 <div class="bg-base-100 shadow-sm flex gap-4 mt-14 p-6 flex-col sm:flex-row items-center">
                     <button id="allBtn" class="btn btn-primary w-28 btnSect">All</button>
@@ -101,7 +101,7 @@
                 </div>
           </section>
           <!--Cards Section -->
-          <section id="allSect" class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 w-9/12 mx-auto pt-6 bg-base-200 shadow-md primarySects pb-4">
+          <section id="allSect" class="hidden grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 gap-y-3 w-9/12 mx-auto pt-6 bg-base-200 shadow-md primarySects pb-4">
           </section>
           <section id="spinner" class="flex justify-center items-center p-20 hidden">
             <span class="loading loading-bar loading-xl"></span>
