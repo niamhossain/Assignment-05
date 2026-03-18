@@ -89,10 +89,26 @@ loadData("all");
                 .then(response => response.json())
                 .then(modalInfo => {
                         const modal = document.getElementById("modalData");
+                        let stats = modalInfo.data.status.toUpperCase();
+                        let colorPriority;
+                        if(modalInfo.data.priority=="high"){
+                            colorPriority = `bg-[#EF4444] `
+                        }
+                        else if(modalInfo.data.priority=="medium"){
+                            colorPriority = `bg-[#D97706]`
+                        }
+                        else{
+                            colorPriority = "bg-gray-400"
+                        }
+
+
+                        if(stats=="OPEN"){
+                            stats = "OPENED";
+                        }
                         modal.innerHTML = `
                         <h1 class="text-2xl font-bold pb-2">${modalInfo.data.title}</h1>
                         <ul class="flex gap-5 text-xs items-center">
-                        <li class="bg-success rounded-full py-1 px-2 text-white">${modalInfo.data.status.toUpperCase()}</li>
+                        <li class="bg-success rounded-full py-1 px-2 text-white">${stats}</li>
                         <li class="text-[#64748B]" type="disc" >Opened by ${modalInfo.data.assignee ? modalInfo.data.assignee : "none"}</li>
                         <li class="text-[#64748B]" type="disc">${dateConversion(modalInfo.data.createdAt)}</li>
                         </ul>
@@ -105,12 +121,13 @@ loadData("all");
                         </p>
                         <div class="flex justify-between gap-4 bg-base-200 p-4">
                         <p class="flex flex-col">
-                         <span class="text-[#64748B]">Assignee:</span> <br> <span class="font-semibold">${modalInfo.data.assignee}</span> 
+                         <span class="text-[#64748B]">Assignee:</span> <br> <span class="font-semibold">${modalInfo.data.assignee ? modalInfo.data.assignee : "Unassigned"}</span> 
                         </p>
                         <p class="flex flex-col items-center">
                         <span class="text-[#64748B]">Priority:</span> <span 
-                        class="text-white bg-[#EF4444] rounded-full py-[6px] px-[15.5px] text-xs">${modalInfo.data.priority.toUpperCase()}
-                        </p></span> 
+                        class="text-white ${colorPriority} rounded-full py-[6px] px-[15.5px] text-xs">${modalInfo.data.priority.toUpperCase()}
+                        </span> 
+                        </p>
                         </div>
                         `
                 })   
