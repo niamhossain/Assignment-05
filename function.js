@@ -51,7 +51,7 @@
                 }
             infoDiv.innerHTML = `
             <div class="card w-5/6 sm:w-64 shadow-lg bg-white border-t-4 ${borderColor} mx-auto justify-evenly">
-                        <div class="w-5/6 mx-auto pt-4">
+                        <div class="w-5/6 mx-auto pt-4" onclick="modal.showModal(); displayModal(${issue.id})">
                             <div class="flex justify-between pb-4 items-center">
                                 <div>
                                     ${img}
@@ -63,8 +63,8 @@
                             <div class="flex text-xs gap-1 py-3 pb-4">
                                 <p class="text-error bg-[#FEECEC] rounded-full text-center py-1 border px-2">${issue.labels[0]}</p>
                                 ${issue.labels[1]? `<p class="text-[#D97706] bg-[#FFF8DB] rounded-full text-center py-1 border px-2">${issue.labels[1]}</p>` : ""}
-                                
                             </div>
+
                             <hr class="border-t border-gray-300">
                             <p class="text-[#64748B] text-xs pt-4 pb-2">#${issue.id}
                                     by ${issue.author}</p>
@@ -76,12 +76,45 @@
             `;
             const allSect = document.getElementById("allSect");
             allSect.append(infoDiv);
+           
+            
         }
     }
 
 loadData("all");
 
-
+        //Displaying the modal
+            displayModal=(id)=>{
+                fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+                .then(response => response.json())
+                .then(modalInfo => {
+                        const modal = document.getElementById("modalData");
+                        modal.innerHTML = `
+                        <h1 class="text-2xl font-bold pb-2">${modalInfo.data.title}</h1>
+                        <ul class="flex gap-5 text-xs items-center">
+                        <li class="bg-success rounded-full py-1 px-2 text-white">Opened</li>
+                        <li class="text-[#64748B]" type="disc" >Opened by ${modalInfo.data.assignee}</li>
+                        <li class="text-[#64748B]" type="disc">${dateConversion(modalInfo.data.createdAt)}</li>
+                        </ul>
+                        <div class="flex text-xs gap-1 py-3 pb-4">
+                                <p class="text-error bg-[#FEECEC] rounded-full text-center py-1 border px-2">${modalInfo.data.labels[0]}</p>
+                                ${modalInfo.data.labels[1]? `<p class="text-[#D97706] bg-[#FFF8DB] rounded-full text-center py-1 border px-2">${modalInfo.data.labels[1]}</p>` : ""}
+                        </div>
+                        <p class="text-[#64748B] mb-6">
+                        ${modalInfo.data.description}
+                        </p>
+                        <div class="flex justify-between gap-4 bg-base-200 p-4">
+                        <p class="flex flex-col">
+                         <span class="text-[#64748B]">Assignee:</span> <br> <span class="font-semibold">${modalInfo.data.assignee}</span> 
+                        </p>
+                        <p class="flex flex-col items-center">
+                        <span class="text-[#64748B]">Priority:</span> <span 
+                        class="text-white bg-[#EF4444] rounded-full py-[6px] px-[15.5px] text-xs">${modalInfo.data.priority.toUpperCase()}
+                        </p></span> 
+                        </div>
+                        `
+                })   
+            }
 
 
 
@@ -147,3 +180,5 @@ document.getElementById("searchBtn").addEventListener("click", ()=>{
     }
     loadData("all");
 })
+
+    
